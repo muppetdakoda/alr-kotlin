@@ -29,7 +29,7 @@ class ArmourTest {
     }
 
     @Test
-    fun `When creating a piece of armour with negative damage, then throw a Valiktor constraint violation exception`() {
+    fun `When creating a piece of armour with negative protection, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
             Armour(
                 name = "test item",
@@ -41,18 +41,18 @@ class ArmourTest {
     @Test
     fun `When creating a piece of armour, it is instantiated correctly`() {
         val armour: Armour? = Armour(
-            name = "test armour",
+            name = "test piece of armour",
             protection = 1,
-            description = "a armour",
+            description = "a piece of armour",
             value = 20
         )
 
         dassert {
             with(armour!!) {
-                name equals "test armour"
+                name equals "test piece of armour"
                 protection equals 1
                 type equals ItemType.ARMOUR
-                description equals "a armour"
+                description equals "a piece of armour"
                 value equals 20
             }
         }

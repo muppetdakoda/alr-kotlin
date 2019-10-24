@@ -1,5 +1,5 @@
 package com.dakoda.alr.item
 
 enum class ItemType {
-    GENERIC, WEAPON, ARMOUR, QUEST, CONSUMABLE
+    GENERIC, WEAPON, ARMOUR, ACCESSORY, QUEST, CONSUMABLE
 }
