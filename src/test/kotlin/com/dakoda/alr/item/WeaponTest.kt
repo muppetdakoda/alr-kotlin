@@ -10,7 +10,7 @@ class WeaponTest {
     @Test
     fun `When creating a weapon with a blank name, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Weapon(
+            MockItem.weapon(
                 name = "",
                 damage = 1
             )
@@ -20,7 +20,7 @@ class WeaponTest {
     @Test
     fun `When creating a weapon with a negative monetary value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Weapon(
+            MockItem.weapon(
                 name = "test item",
                 damage = 1,
                 value = -1
@@ -31,7 +31,7 @@ class WeaponTest {
     @Test
     fun `When creating a weapon with negative damage, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Weapon(
+            MockItem.weapon(
                 name = "test item",
                 damage = -1
             )
@@ -40,7 +40,7 @@ class WeaponTest {
 
     @Test
     fun `When creating a weapon, it is instantiated correctly`() {
-        val weapon: Weapon? = Weapon(
+        val weapon: Weapon? = MockItem.weapon(
             name = "test weapon",
             damage = 1,
             description = "a weapon",

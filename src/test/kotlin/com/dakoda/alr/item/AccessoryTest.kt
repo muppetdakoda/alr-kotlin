@@ -26,7 +26,7 @@ class AccessoryTest {
 
     @Test
     fun `When creating an accessory, it is instantiated correctly`() {
-        val accessory: Accessory? = Accessory(
+        val accessory: Accessory? = MockItem.accessory(
             name = "test accessory",
             description = "an accessory",
             value = 20

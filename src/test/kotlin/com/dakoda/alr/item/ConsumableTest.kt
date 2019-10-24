@@ -10,14 +10,14 @@ class ConsumableTest {
     @Test
     fun `When creating a consumable with a blank name, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Consumable(name = "")
+            MockItem.consumable(name = "")
         }
     }
 
     @Test
     fun `When creating a consumable with a negative monetary value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Consumable(
+            MockItem.consumable(
                 name = "test item",
                 value = -1
             )
@@ -26,7 +26,7 @@ class ConsumableTest {
 
     @Test
     fun `When creating a consumable, it is instantiated correctly`() {
-        val consumable: Consumable? = Consumable(
+        val consumable: Consumable? = MockItem.consumable(
             name = "test consumable",
             description = "a consumable",
             value = 20

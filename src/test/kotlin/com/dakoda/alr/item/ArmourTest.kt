@@ -10,7 +10,7 @@ class ArmourTest {
     @Test
     fun `When creating a piece of armour with a blank name, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Armour(
+            MockItem.armour(
                 name = "",
                 protection = 1
             )
@@ -20,7 +20,7 @@ class ArmourTest {
     @Test
     fun `When creating a piece of armour with a monetary negative value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Armour(
+            MockItem.armour(
                 name = "test item",
                 protection = 1,
                 value = -1
@@ -31,7 +31,7 @@ class ArmourTest {
     @Test
     fun `When creating a piece of armour with negative protection, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Armour(
+            MockItem.armour(
                 name = "test item",
                 protection = -1
             )
@@ -40,7 +40,7 @@ class ArmourTest {
 
     @Test
     fun `When creating a piece of armour, it is instantiated correctly`() {
-        val armour: Armour? = Armour(
+        val armour: Armour? = MockItem.armour(
             name = "test piece of armour",
             protection = 1,
             description = "a piece of armour",

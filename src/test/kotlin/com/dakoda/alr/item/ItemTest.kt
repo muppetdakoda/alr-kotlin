@@ -10,9 +10,8 @@ class ItemTest {
     @Test
     fun `When creating an item with a blank name, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Item(
-                name = "",
-                type = ItemType.GENERIC
+            MockItem.generic(
+                name = ""
             )
         }
     }
@@ -20,9 +19,8 @@ class ItemTest {
     @Test
     fun `When creating an item with a negative monetary value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Item(
+            MockItem.generic(
                 name = "test item",
-                type = ItemType.GENERIC,
                 value = -1
             )
         }
@@ -30,9 +28,8 @@ class ItemTest {
 
     @Test
     fun `When creating an item, it is instantiated correctly`() {
-        val item: Item? = Item(
+        val item: Item? = MockItem.generic(
             name = "test item",
-            type = ItemType.GENERIC,
             description = "an item",
             value = 20
         )
