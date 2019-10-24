@@ -12,17 +12,17 @@ class ItemTest {
         assertThrows<ConstraintViolationException> {
             Item(
                 name = "",
-                type = ItemType.WEAPON
+                type = ItemType.GENERIC
             )
         }
     }
 
     @Test
-    fun `When creating an item with a negative value, then throw a Valiktor constraint violation exception`() {
+    fun `When creating an item with a negative monetary value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
             Item(
                 name = "test item",
-                type = ItemType.WEAPON,
+                type = ItemType.GENERIC,
                 value = -1
             )
         }
@@ -32,17 +32,18 @@ class ItemTest {
     fun `When creating an item, it is instantiated correctly`() {
         val item: Item? = Item(
             name = "test item",
-            type = ItemType.WEAPON,
-            description = "a weapon",
-            value = 0
+            type = ItemType.GENERIC,
+            description = "a item",
+            value = 20
         )
 
         dassert {
-            item.isNotNull
-            item?.name equals "test item"
-            item?.type equals ItemType.WEAPON
-            item?.description equals "a weapon"
-            item?.value equals 0
+            with(item!!) {
+                name equals "test item"
+                type equals ItemType.GENERIC
+                description equals "a item"
+                value equals 20
+            }
         }
     }
 }
