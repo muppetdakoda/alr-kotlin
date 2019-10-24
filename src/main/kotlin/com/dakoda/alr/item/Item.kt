@@ -12,7 +12,7 @@ open class Item(
 ) {
 
     init {
-        validate(this) {
+        @Suppress("LeakingThis") validate(this) {
             validate(Item::name).isNotBlank()
             validate(Item::value).isPositiveOrZero()
         }
