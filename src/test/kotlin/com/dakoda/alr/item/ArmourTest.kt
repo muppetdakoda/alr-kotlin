@@ -41,18 +41,18 @@ class ArmourTest {
     @Test
     fun `When creating a piece of armour, it is instantiated correctly`() {
         val armour: Armour? = Armour(
-            name = "test weapon",
+            name = "test armour",
             protection = 1,
-            description = "a weapon",
+            description = "a armour",
             value = 20
         )
 
         dassert {
             with(armour!!) {
-                name equals "test weapon"
+                name equals "test armour"
                 protection equals 1
-                type equals ItemType.WEAPON
-                description equals "a weapon"
+                type equals ItemType.ARMOUR
+                description equals "a armour"
                 value equals 20
             }
         }

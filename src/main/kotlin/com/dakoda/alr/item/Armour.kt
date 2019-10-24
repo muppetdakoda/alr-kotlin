@@ -11,7 +11,7 @@ class Armour(
     value: Int = 0
 ): Item(
     name = name,
-    type = ItemType.WEAPON,
+    type = ItemType.ARMOUR,
     description = description,
     value = value
 ) {

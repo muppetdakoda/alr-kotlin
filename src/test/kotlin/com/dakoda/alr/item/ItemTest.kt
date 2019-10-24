@@ -33,7 +33,7 @@ class ItemTest {
         val item: Item? = Item(
             name = "test item",
             type = ItemType.GENERIC,
-            description = "a item",
+            description = "an item",
             value = 20
         )
 
@@ -41,7 +41,7 @@ class ItemTest {
             with(item!!) {
                 name equals "test item"
                 type equals ItemType.GENERIC
-                description equals "a item"
+                description equals "an item"
                 value equals 20
             }
         }
