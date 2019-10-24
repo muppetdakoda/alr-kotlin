@@ -1,5 +1,7 @@
 package com.dakoda.alr.item
 
+import com.dakoda.alr.MockCharacter
+import com.dakoda.alr.MockItem
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -28,6 +30,7 @@ class ConsumableTest {
     fun `When creating a consumable, it is instantiated correctly`() {
         val consumable: Consumable? = MockItem.consumable(
             name = "test consumable",
+            stats = MockCharacter.stats,
             description = "a consumable",
             value = 20
         )
@@ -36,6 +39,11 @@ class ConsumableTest {
             with(consumable!!) {
                 name equals "test consumable"
                 type equals ItemType.CONSUMABLE
+                with(stats) {
+                    MockCharacter.stats.forEach { stat ->
+                        this contains stat
+                    }
+                }
                 description equals "a consumable"
                 value equals 20
             }

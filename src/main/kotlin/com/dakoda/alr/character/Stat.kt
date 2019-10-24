@@ -13,4 +13,14 @@ class Stat(
             validate(Stat::value).isPositiveOrZero()
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        return other is Stat &&
+                other.type == this.type &&
+                other.value == this.value
+    }
+
+    override fun hashCode(): Int {
+        return type.ordinal.hashCode() + value.hashCode()
+    }
 }

@@ -1,5 +1,7 @@
 package com.dakoda.alr.item
 
+import com.dakoda.alr.MockCharacter
+import com.dakoda.alr.MockItem
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -28,6 +30,7 @@ class AccessoryTest {
     fun `When creating an accessory, it is instantiated correctly`() {
         val accessory: Accessory? = MockItem.accessory(
             name = "test accessory",
+            stats = MockCharacter.stats,
             description = "an accessory",
             value = 20
         )
@@ -36,6 +39,11 @@ class AccessoryTest {
             with(accessory!!) {
                 name equals "test accessory"
                 type equals ItemType.ACCESSORY
+                with(stats) {
+                    MockCharacter.stats.forEach { stat ->
+                        this contains stat
+                    }
+                }
                 description equals "an accessory"
                 value equals 20
             }

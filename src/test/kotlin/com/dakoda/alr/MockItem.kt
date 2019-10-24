@@ -1,7 +1,7 @@
-package com.dakoda.alr.item
+package com.dakoda.alr
 
 import com.dakoda.alr.character.Stat
-import com.dakoda.alr.item.ItemType.*
+import com.dakoda.alr.item.*
 
 class MockItem {
 
