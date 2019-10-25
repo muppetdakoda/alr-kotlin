@@ -46,6 +46,7 @@ class StatTest {
 
         dassert {
             first equals second
+            first.hashCode() equals second.hashCode()
         }
     }
 
