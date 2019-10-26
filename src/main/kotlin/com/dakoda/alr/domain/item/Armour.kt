@@ -1,26 +1,26 @@
-package com.dakoda.alr.item
+package com.dakoda.alr.domain.item
 
 import org.valiktor.functions.isNotBlank
 import org.valiktor.functions.isPositiveOrZero
 import org.valiktor.validate
 
-class Weapon(
+class Armour(
     name: String,
-    val damage: Int,
+    val protection: Int,
     description: String = "",
     value: Int = 0
 ): Item(
     name = name,
-    type = ItemType.WEAPON,
+    type = ItemType.ARMOUR,
     description = description,
     value = value
 ) {
 
     init {
         validate(this) {
-            validate(Weapon::name).isNotBlank()
-            validate(Weapon::damage).isPositiveOrZero()
-            validate(Weapon::value).isPositiveOrZero()
+            validate(Armour::name).isNotBlank()
+            validate(Armour::protection).isPositiveOrZero()
+            validate(Armour::value).isPositiveOrZero()
         }
     }
 }

@@ -1,6 +1,6 @@
-package com.dakoda.alr.item
+package com.dakoda.alr.domain.item
 
-import com.dakoda.alr.character.Stat
+import com.dakoda.alr.domain.character.Stat
 import org.valiktor.functions.isNotBlank
 import org.valiktor.functions.isPositiveOrZero
 import org.valiktor.validate

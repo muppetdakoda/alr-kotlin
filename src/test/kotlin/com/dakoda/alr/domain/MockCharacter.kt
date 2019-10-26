@@ -1,7 +1,7 @@
-package com.dakoda.alr
+package com.dakoda.alr.domain
 
-import com.dakoda.alr.character.Stat
-import com.dakoda.alr.character.StatType
+import com.dakoda.alr.domain.character.Stat
+import com.dakoda.alr.domain.character.StatType
 
 class MockCharacter {
 

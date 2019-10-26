@@ -1,4 +1,4 @@
-package com.dakoda.alr.item
+package com.dakoda.alr.domain.item
 
 import org.valiktor.functions.isNotBlank
 import org.valiktor.functions.isPositiveOrZero

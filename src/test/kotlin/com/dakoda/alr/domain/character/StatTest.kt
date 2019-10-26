@@ -1,6 +1,6 @@
-package com.dakoda.alr.character
+package com.dakoda.alr.domain.character
 
-import com.dakoda.alr.MockCharacter
+import com.dakoda.alr.domain.MockCharacter
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

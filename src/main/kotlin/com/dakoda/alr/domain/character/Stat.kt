@@ -1,4 +1,4 @@
-package com.dakoda.alr.character
+package com.dakoda.alr.domain.character
 
 import org.valiktor.functions.isPositiveOrZero
 import org.valiktor.validate

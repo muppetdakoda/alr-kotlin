@@ -1,6 +1,6 @@
-package com.dakoda.alr.item
+package com.dakoda.alr.domain.item
 
-import com.dakoda.alr.MockItem
+import com.dakoda.alr.domain.MockItem
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

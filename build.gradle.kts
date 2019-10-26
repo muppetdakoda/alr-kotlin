@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val fxglVersion = "0.5.4"
 val jvmTarget = "1.8"
 val valiktorVersion = "0.5.0"
 val junitVersion = "5.3.1"
@@ -11,6 +10,8 @@ plugins {
     kotlin("jvm") version "1.3.31"
     java
     jacoco
+    id("org.springframework.boot") version "2.0.5.RELEASE"
+    id("io.spring.dependency-management") version "1.0.7.RELEASE"
 }
 
 group = "com.dakoda"
@@ -28,6 +29,11 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation("org.valiktor", "valiktor-core", valiktorVersion)
     implementation("com.github.dakodabutnot", "dassert", dassertVersion)
+    implementation("org.springframework.boot", "spring-boot-dependencies", "2.0.5.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    runtimeOnly("org.hsqldb:hsqldb")
 
     testImplementation("org.assertj", "assertj-core", assertJVersion)
     testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
