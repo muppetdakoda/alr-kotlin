@@ -7,12 +7,15 @@ val assertJVersion = "3.11.1"
 val dassertVersion = "1.0.1"
 
 plugins {
-    kotlin("jvm") version "1.3.31"
-    java
-    jacoco
-    id("org.springframework.boot") version "2.0.5.RELEASE"
-    id("io.spring.dependency-management") version "1.0.7.RELEASE"
+    id("org.jetbrains.kotlin.jvm") version "1.3.31"
+    id("org.gradle.java")
+    id("org.gradle.jacoco")
+    id("org.springframework.boot") version "2.2.0.RELEASE"
+
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.3.31"
 }
+
+apply(plugin = "io.spring.dependency-management")
 
 group = "com.dakoda"
 version = "0.0"
@@ -31,12 +34,15 @@ dependencies {
     implementation("com.github.dakodabutnot", "dassert", dassertVersion)
     implementation("org.springframework.boot", "spring-boot-dependencies", "2.0.5.RELEASE")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+")
 
     runtimeOnly("org.hsqldb:hsqldb")
 
     testImplementation("org.assertj", "assertj-core", assertJVersion)
     testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
+    testImplementation("io.mockk:mockk:1.9.3")
     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
 }
 
