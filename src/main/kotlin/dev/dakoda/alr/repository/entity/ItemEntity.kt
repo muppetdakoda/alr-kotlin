@@ -23,5 +23,5 @@ class ItemEntity(
     val description: String,
 
     @Column(name = "ITEM_VALUE")
-    val value: String
+    val value: Int
 )

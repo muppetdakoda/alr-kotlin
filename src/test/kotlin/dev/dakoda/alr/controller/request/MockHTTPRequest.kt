@@ -1,13 +1,13 @@
 package dev.dakoda.alr.controller.request
 
-import dev.dakoda.alr.repository.GameDefault
+import dev.dakoda.alr.domain.MockItem
 
 class MockHTTPRequest {
 
     companion object {
 
         fun getItem(
-            id: String = GameDefault.itemEntity.ID
-        ) = GetItemRequest(ID = id)
+            id: String = MockItem.generic().id
+        ) = GetItemRequest(id = id)
     }
 }

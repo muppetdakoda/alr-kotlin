@@ -41,6 +41,9 @@ dependencies {
 
     runtimeOnly("org.hsqldb:hsqldb")
 
+    testImplementation("com.ninja-squad:springmockk:1.1.3") {
+        exclude(module = "mockito-core")
+    }
     testImplementation("org.assertj", "assertj-core", assertJVersion)
     testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
     testImplementation("io.mockk:mockk:1.9.3")

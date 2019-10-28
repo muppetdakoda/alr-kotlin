@@ -9,6 +9,7 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.just
 import io.mockk.runs
+import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
@@ -27,7 +28,7 @@ class ItemServiceTest {
 
         every { dataService.getItem(any()) } returns item
 
-        val responseItem = service.getItem(item.ID)
+        val responseItem = service.getItem(item.id)
         with (responseItem) {
             dassert {
                 this@with equals item
@@ -40,6 +41,20 @@ class ItemServiceTest {
         val item = MockItem.generic()
 
         every { dataService.saveItem(any()) } just runs
+
+        service.saveItem(item)
+
+        verify(exactly = 1) { dataService.saveItem(item) }
+    }
+
+    fun `When saving an item with no ID associated with it it is generated`() {
+        val item = MockItem.generic(generateID = true)
+
+        every { dataService.saveItem(any()) } just runs
+
+        service.saveItem(item)
+
+        verify(exactly = 1) { dataService.saveItem(item) }
     }
 
 }

@@ -12,18 +12,19 @@ class MockItem {
         fun generic(
             name: String = "Mock generic item",
             description: String = "Mock generic item description",
-            value: String = "20"
+            value: Int = 20,
+            generateID: Boolean = true
         ) = Item(
             name = name,
             description = description,
             value = value
-        ).apply { ID = UUID.randomUUID().toString() }
+        ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
         fun genericEntity(
             id: String = UUID.randomUUID().toString(),
             name: String = "Mock generic item",
             description: String = "Mock generic item description",
-            value: String = "20"
+            value: Int = 20
         ) = ItemEntity(
             ID = id,
             name = name,
@@ -36,48 +37,52 @@ class MockItem {
             name: String = "Mock weapon",
             damage: Int = 1,
             description: String = "Mock weapon description",
-            value: String = "20"
+            value: Int = 20,
+            generateID: Boolean = true
         ) = Weapon(
             name = name,
             damage = damage,
             description = description,
             value = value
-        ).apply { ID = UUID.randomUUID().toString() }
+        ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
         fun consumable(
             name: String = "Mock consumable",
             stats: MutableList<Stat> = mutableListOf(),
             description: String = "Mock consumable description",
-            value: String = "20"
+            value: Int = 20,
+            generateID: Boolean = true
         ) = Consumable(
             name = name,
             stats = stats,
             description = description,
             value = value
-        ).apply { ID = UUID.randomUUID().toString() }
+        ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
         fun armour(
             name: String = "Mock piece of armour",
             protection: Int = 1,
             description: String = "Mock piece of armour description",
-            value: String = "20"
+            value: Int = 20,
+            generateID: Boolean = true
         ) = Armour(
             name = name,
             protection = protection,
             description = description,
             value = value
-        ).apply { ID = UUID.randomUUID().toString() }
+        ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
         fun accessory(
             name: String = "Mock accessory",
             stats: MutableList<Stat> = mutableListOf(),
             description: String = "Mock accessory description",
-            value: String = "20"
+            value: Int = 20,
+            generateID: Boolean = true
         ) = Accessory(
             name = name,
             stats = stats,
             description = description,
             value = value
-        ).apply { ID = UUID.randomUUID().toString() }
+        ).apply { if (generateID) id = UUID.randomUUID().toString() }
     }
 }

@@ -29,11 +29,11 @@ class ItemDataServiceImpl(
         description = description,
         value = value
     ).apply {
-        this.ID = this@convert.ID
+        this.id = this@convert.ID
     }
 
     private fun Item.convert() = ItemEntity(
-        ID = ID,
+        ID = id,
         name = name,
         type = type.name,
         description = description,

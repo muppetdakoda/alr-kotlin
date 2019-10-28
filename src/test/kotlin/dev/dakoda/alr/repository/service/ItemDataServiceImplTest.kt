@@ -33,7 +33,7 @@ class ItemDataServiceImplTest {
         val response = dataService.getItem(itemEntity.ID)
         with(response) {
             dassert {
-                ID equals itemEntity.ID
+                id equals itemEntity.ID
                 name equals itemEntity.name
                 type.name equals itemEntity.type
                 description equals itemEntity.description
@@ -57,7 +57,7 @@ class ItemDataServiceImplTest {
     fun `When saving a new item, then a call is made to save the item to the repository`() {
         val item = MockItem.generic()
         val itemEntity = MockItem.genericEntity(
-            id = item.ID,
+            id = item.id,
             name = item.name,
             description = item.description,
             value = item.value
