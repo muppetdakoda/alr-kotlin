@@ -2,6 +2,7 @@ package dev.dakoda.alr.domain
 
 import dev.dakoda.alr.domain.character.Stat
 import dev.dakoda.alr.domain.item.*
+import dev.dakoda.alr.repository.entity.ItemEntity
 import java.util.UUID
 
 class MockItem {
@@ -16,7 +17,20 @@ class MockItem {
             name = name,
             description = description,
             value = value
-        ).apply { id = UUID.randomUUID().toString() }
+        ).apply { ID = UUID.randomUUID().toString() }
+
+        fun genericEntity(
+            id: String = UUID.randomUUID().toString(),
+            name: String = "Mock generic item",
+            description: String = "Mock generic item description",
+            value: Int = 20
+        ) = ItemEntity(
+            id = id,
+            name = name,
+            type = "GENERIC",
+            description = description,
+            value = value
+        )
 
         fun weapon(
             name: String = "Mock weapon",
@@ -28,7 +42,7 @@ class MockItem {
             damage = damage,
             description = description,
             value = value
-        ).apply { id = UUID.randomUUID().toString() }
+        ).apply { ID = UUID.randomUUID().toString() }
 
         fun consumable(
             name: String = "Mock consumable",
@@ -40,7 +54,7 @@ class MockItem {
             stats = stats,
             description = description,
             value = value
-        ).apply { id = UUID.randomUUID().toString() }
+        ).apply { ID = UUID.randomUUID().toString() }
 
         fun armour(
             name: String = "Mock piece of armour",
@@ -52,7 +66,7 @@ class MockItem {
             protection = protection,
             description = description,
             value = value
-        ).apply { id = UUID.randomUUID().toString() }
+        ).apply { ID = UUID.randomUUID().toString() }
 
         fun accessory(
             name: String = "Mock accessory",
@@ -64,6 +78,6 @@ class MockItem {
             stats = stats,
             description = description,
             value = value
-        ).apply { id = UUID.randomUUID().toString() }
+        ).apply { ID = UUID.randomUUID().toString() }
     }
 }

@@ -21,6 +21,6 @@ class GameDefault {
             type = WEAPON,
             description = "A developer sword item meant for testing; it does no damage.",
             value = 0
-        ).apply { id = "607baeca-bcda-4628-97e7-9beea73c8ca1" }
+        ).apply { ID = "607baeca-bcda-4628-97e7-9beea73c8ca1" }
     }
 }
