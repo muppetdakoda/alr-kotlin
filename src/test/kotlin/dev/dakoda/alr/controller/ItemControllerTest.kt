@@ -34,7 +34,7 @@ class ItemControllerTest {
                 statusCode equals HttpStatus.OK
 
                 val itemResponse = body!!
-                itemResponse.ID equals itemRequest.id
+                itemResponse.ID equals itemRequest.ID
             }
         }
     }

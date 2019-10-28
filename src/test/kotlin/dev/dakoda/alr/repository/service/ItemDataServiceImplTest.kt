@@ -30,10 +30,10 @@ class ItemDataServiceImplTest {
 
         every { repository.findById(any()) } returns Optional.of(itemEntity)
 
-        val response = dataService.getItem(itemEntity.id)
+        val response = dataService.getItem(itemEntity.ID)
         with(response) {
             dassert {
-                ID equals itemEntity.id
+                ID equals itemEntity.ID
                 name equals itemEntity.name
                 type.name equals itemEntity.type
                 description equals itemEntity.description
@@ -49,7 +49,7 @@ class ItemDataServiceImplTest {
         every { repository.findById(any()) } returns Optional.empty()
 
         assertThrows<ItemNotFoundException> {
-            dataService.getItem(itemEntity.id)
+            dataService.getItem(itemEntity.ID)
         }
     }
 

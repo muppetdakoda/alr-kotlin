@@ -9,7 +9,7 @@ class Consumable(
     name: String,
     val stats: MutableList<Stat> = mutableListOf(),
     description: String = "",
-    value: Int = 0
+    value: String = "0"
 ): Item(
     name = name,
     type = ItemType.CONSUMABLE,
@@ -20,7 +20,6 @@ class Consumable(
     init {
         validate(this) {
             validate(Consumable::name).isNotBlank()
-            validate(Consumable::value).isPositiveOrZero()
         }
     }
 }

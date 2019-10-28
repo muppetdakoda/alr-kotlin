@@ -12,7 +12,7 @@ class MockItem {
         fun generic(
             name: String = "Mock generic item",
             description: String = "Mock generic item description",
-            value: Int = 20
+            value: String = "20"
         ) = Item(
             name = name,
             description = description,
@@ -23,9 +23,9 @@ class MockItem {
             id: String = UUID.randomUUID().toString(),
             name: String = "Mock generic item",
             description: String = "Mock generic item description",
-            value: Int = 20
+            value: String = "20"
         ) = ItemEntity(
-            id = id,
+            ID = id,
             name = name,
             type = "GENERIC",
             description = description,
@@ -36,7 +36,7 @@ class MockItem {
             name: String = "Mock weapon",
             damage: Int = 1,
             description: String = "Mock weapon description",
-            value: Int = 20
+            value: String = "20"
         ) = Weapon(
             name = name,
             damage = damage,
@@ -48,7 +48,7 @@ class MockItem {
             name: String = "Mock consumable",
             stats: MutableList<Stat> = mutableListOf(),
             description: String = "Mock consumable description",
-            value: Int = 20
+            value: String = "20"
         ) = Consumable(
             name = name,
             stats = stats,
@@ -60,7 +60,7 @@ class MockItem {
             name: String = "Mock piece of armour",
             protection: Int = 1,
             description: String = "Mock piece of armour description",
-            value: Int = 20
+            value: String = "20"
         ) = Armour(
             name = name,
             protection = protection,
@@ -72,7 +72,7 @@ class MockItem {
             name: String = "Mock accessory",
             stats: MutableList<Stat> = mutableListOf(),
             description: String = "Mock accessory description",
-            value: Int = 20
+            value: String = "20"
         ) = Accessory(
             name = name,
             stats = stats,

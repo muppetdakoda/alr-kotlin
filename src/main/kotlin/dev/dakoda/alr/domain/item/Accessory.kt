@@ -9,7 +9,7 @@ class Accessory(
     name: String,
     val stats: MutableList<Stat> = mutableListOf(),
     description: String = "",
-    value: Int = 0
+    value: String = "20"
 ): Item(
     name = name,
     type = ItemType.ACCESSORY,
@@ -20,7 +20,6 @@ class Accessory(
     init {
         validate(this) {
             validate(Accessory::name).isNotBlank()
-            validate(Accessory::value).isPositiveOrZero()
         }
     }
 }

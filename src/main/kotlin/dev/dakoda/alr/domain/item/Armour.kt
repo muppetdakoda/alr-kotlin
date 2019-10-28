@@ -8,7 +8,7 @@ class Armour(
     name: String,
     val protection: Int,
     description: String = "",
-    value: Int = 0
+    value: String = "0"
 ): Item(
     name = name,
     type = ItemType.ARMOUR,
@@ -20,7 +20,6 @@ class Armour(
         validate(this) {
             validate(Armour::name).isNotBlank()
             validate(Armour::protection).isPositiveOrZero()
-            validate(Armour::value).isPositiveOrZero()
         }
     }
 }

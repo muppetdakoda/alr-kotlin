@@ -10,18 +10,18 @@ import javax.persistence.Table
 class ItemEntity(
 
     @Id
-    @Column(name = "itemID", nullable = false)
-    val id: String,
+    @Column(name = "ITEM_ID", nullable = false)
+    val ID: String,
 
-    @Column(name = "itemName", nullable = false)
+    @Column(name = "ITEM_NAME")
     val name: String,
 
-    @Column(name = "itemType", nullable = false)
+    @Column(name = "ITEM_TYPE")
     val type: String,
 
-    @Column(name = "itemDescription", nullable = false)
+    @Column(name = "ITEM_DESCRIPTION")
     val description: String,
 
-    @Column(name = "itemValue", nullable = false)
-    val value: Int
+    @Column(name = "ITEM_VALUE")
+    val value: String
 )

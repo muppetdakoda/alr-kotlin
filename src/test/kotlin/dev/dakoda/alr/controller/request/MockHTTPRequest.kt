@@ -7,7 +7,7 @@ class MockHTTPRequest {
     companion object {
 
         fun getItem(
-            id: String = GameDefault.itemEntity.id
-        ) = GetItemRequest(id = id)
+            id: String = GameDefault.itemEntity.ID
+        ) = GetItemRequest(ID = id)
     }
 }

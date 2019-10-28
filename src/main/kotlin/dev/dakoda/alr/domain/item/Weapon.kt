@@ -8,7 +8,7 @@ class Weapon(
     name: String,
     val damage: Int,
     description: String = "",
-    value: Int = 0
+    value: String = "0"
 ): Item(
     name = name,
     type = ItemType.WEAPON,
@@ -20,7 +20,6 @@ class Weapon(
         validate(this) {
             validate(Weapon::name).isNotBlank()
             validate(Weapon::damage).isPositiveOrZero()
-            validate(Weapon::value).isPositiveOrZero()
         }
     }
 }

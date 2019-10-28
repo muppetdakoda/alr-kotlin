@@ -33,6 +33,7 @@ dependencies {
     implementation("org.valiktor", "valiktor-core", valiktorVersion)
     implementation("com.github.dakodabutnot", "dassert", dassertVersion)
     implementation("org.springframework.boot", "spring-boot-dependencies", "2.0.5.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

@@ -15,6 +15,9 @@ class ItemController(
 
     @GetMapping("/item")
     fun getItem(@RequestBody request: GetItemRequest): ResponseEntity<Item> {
-        return ResponseEntity.status(200).body(service.getItem(request.id))
+        val item = service.getItem(request.ID)
+
+        val response = ResponseEntity.status(200).body(item)
+        return response
     }
 }
