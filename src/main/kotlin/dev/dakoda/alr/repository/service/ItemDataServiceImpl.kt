@@ -17,7 +17,6 @@ class ItemDataServiceImpl(
         if (repositoryResponse.isPresent) {
             return repositoryResponse.get().convert()
         } else throw ItemNotFoundException()
-
     }
 
     override fun saveItem(item: Item) {

@@ -1,0 +1,7 @@
+CREATE TABLE ALR_ITEM (
+    itemID VARCHAR(32) PRIMARY KEY NOT NULL,
+    itemName VARCHAR(32) NOT NULL,
+    itemType VARCHAR(32) NOT NULL,
+    itemDescription VARCHAR(32) NOT NULL,
+    itemValue VARCHAR(32) NOT NULL
+);
