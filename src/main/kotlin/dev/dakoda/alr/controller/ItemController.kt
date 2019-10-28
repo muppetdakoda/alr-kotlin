@@ -16,7 +16,6 @@ class ItemController(
     fun getItem(@PathVariable requestID: String): ResponseEntity<Item> {
         val item = service.getItem(requestID)
 
-        val response = ResponseEntity.status(200).body(item)
-        return response
+        return ResponseEntity.status(200).body(item)
     }
 }

@@ -10,7 +10,7 @@ class Consumable(
     val stats: MutableList<Stat> = mutableListOf(),
     description: String = "",
     value: Int = 0
-): Item(
+) : Item(
     name = name,
     type = ItemType.CONSUMABLE,
     description = description,

@@ -32,6 +32,11 @@ open class Item(
     }
 
     override fun hashCode(): Int {
-        return super.hashCode()
+        var result = name.hashCode()
+        result = 31 * result + type.hashCode()
+        result = 31 * result + description.hashCode()
+        result = 31 * result + value
+        result = 31 * result + id.hashCode()
+        return result
     }
 }

@@ -25,7 +25,8 @@ class ItemControllerTest @Autowired constructor(
     private val mockMVC: MockMvc
 ) {
 
-    @MockkBean lateinit var service: ItemService
+    @MockkBean
+    lateinit var service: ItemService
 
     @Test
     fun `When hitting the item endpoint with a valid request body and a valid item ID, then receive a 200 OK response and an item`() {
@@ -38,9 +39,9 @@ class ItemControllerTest @Autowired constructor(
             accept = MediaType.APPLICATION_JSON
         }.andReturn()
 
-        with(result) {
+        with(result) result@{
             dassert {
-                response.status equals 200
+                this@result.response.status equals 200
 
                 val itemResponse = jacksonObjectMapper().readValue(response.contentAsString, Item::class.java)
                 itemResponse.id equals itemRequest.id

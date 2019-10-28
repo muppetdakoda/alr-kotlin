@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class ItemDataServiceImpl(
     private val repository: ItemRepository
-): ItemDataService {
+) : ItemDataService {
 
     override fun getItem(id: String): Item {
         val repositoryResponse = repository.findById(id)

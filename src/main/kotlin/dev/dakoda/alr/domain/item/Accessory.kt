@@ -10,7 +10,7 @@ class Accessory(
     val stats: MutableList<Stat> = mutableListOf(),
     description: String = "",
     value: Int = 20
-): Item(
+) : Item(
     name = name,
     type = ItemType.ACCESSORY,
     description = description,

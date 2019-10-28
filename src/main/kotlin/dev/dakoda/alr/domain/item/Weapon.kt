@@ -9,7 +9,7 @@ class Weapon(
     val damage: Int,
     description: String = "",
     value: Int = 0
-): Item(
+) : Item(
     name = name,
     type = ItemType.WEAPON,
     description = description,
