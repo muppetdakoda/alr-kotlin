@@ -75,3 +75,9 @@ tasks {
         )
     }
 }
+
+val compileKotlin: KotlinCompile by tasks
+
+compileKotlin.kotlinOptions {
+    freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
+}
