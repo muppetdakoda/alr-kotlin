@@ -15,7 +15,7 @@ class ItemService(
     }
 
     fun saveItem(item: Item) {
-        if (!item.hasID()) {
+        if (!item.hasId()) {
             item.id = UUID.randomUUID().toString()
         }
         dataService.save(item)

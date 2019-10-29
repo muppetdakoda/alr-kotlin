@@ -20,8 +20,31 @@ class ItemEntity(
     val type: String,
 
     @Column(name = "ITEM_DESCRIPTION")
-    val description: String,
+    val description: String = "",
 
     @Column(name = "ITEM_VALUE")
-    val value: Int
-)
+    val value: Int = 0,
+
+    @Column(name = "ITEM_DAMAGE")
+    val damage: Int = 0,
+
+    @Column(name = "ITEM_PROTECTION")
+    val protection: Int = 0,
+
+    @Column(name = "ITEM_STAT_COURAGE")
+    val courage: Int = 0,
+
+    @Column(name = "ITEM_STAT_DEXTERITY")
+    val dexterity: Int = 0,
+
+    @Column(name = "ITEM_STAT_WISDOM")
+    val wisdom: Int = 0,
+
+    @Column(name = "ITEM_STAT_HEALTH")
+    val health: Int = 0,
+
+    @Column(name = "ITEM_STAT_MANA")
+    val mana: Int = 0
+) {
+    companion object
+}

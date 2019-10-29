@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class ItemDataService(
     private val repository: ItemRepository
-): DataService<Item> {
+) : DataService<Item> {
 
     override fun get(id: String): Item {
         val repositoryResponse = repository.findById(id)
@@ -24,19 +24,18 @@ class ItemDataService(
     }
 
     private fun ItemEntity.convert() = Item(
-        name = name,
-        type = ItemType.valueOf(type),
-        description = description,
-        value = value
+        name, ItemType.valueOf(type), description, value,
+        damage, protection,
+        courage, dexterity, wisdom,
+        health, mana
     ).apply {
         this.id = this@convert.id
     }
 
     private fun Item.convert() = ItemEntity(
-        id = id,
-        name = name,
-        type = type.name,
-        description = description,
-        value = value
+        id, name, type.name, description, value,
+        damage, protection,
+        courage, dexterity, wisdom,
+        health, mana
     )
 }

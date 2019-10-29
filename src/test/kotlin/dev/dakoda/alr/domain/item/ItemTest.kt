@@ -1,102 +1,86 @@
 package dev.dakoda.alr.domain.item
 
-import dev.dakoda.alr.domain.MockedItem
+import dev.dakoda.alr.mocked
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
-import org.valiktor.ConstraintViolationException
 
 class ItemTest {
 
     @Test
-    fun `When creating an item with a blank name, then throw a Valiktor constraint violation exception`() {
-        assertThrows<ConstraintViolationException> {
-            MockedItem.junk(
-                name = ""
-            )
+    fun `When creating an item, it is instantiated correctly`() {
+        val mockedItem = Item.mocked(
+            name = "testing item 123",
+            type = ItemType.CONSUMABLE,
+            description = "some test item",
+            value = 12390,
+            damage = 4,
+            protection = 16,
+            courage = 1,
+            dexterity = 21,
+            wisdom = -4,
+            health = 200,
+            mana = 400
+        )
+
+        with(mockedItem) {
+            dassert {
+                name equals "testing item 123"
+                type equals ItemType.CONSUMABLE
+                description equals "some test item"
+                value equals 12390
+                damage equals 4
+                protection equals 16
+                courage equals 1
+                dexterity equals 21
+                wisdom equals -4
+                health equals 200
+                mana equals 400
+            }
         }
     }
 
     @Test
-    fun `When creating an item with a negative monetary value, then throw a Valiktor constraint violation exception`() {
-        assertThrows<ConstraintViolationException> {
-            MockedItem.junk(
-                name = "test item",
-                value = -1
-            )
-        }
-    }
-
-    @Test
-    fun `Equally instantiated Item objects are equal`() {
-        val first = MockedItem.junk(generateID = false)
-        val second = MockedItem.junk(generateID = false)
-
-        dassert {
-            first equals second
-            first.hashCode() equals second.hashCode()
-        }
-    }
-
-    @Test
-    fun `Unequally instantiated Item objects are not equal`() {
-        val first = MockedItem.junk(
-            name = "Random item",
-            description = "1234567890",
-            value = 2340,
-            generateID = false
-        )
-        val second = MockedItem.weapon(
-            name = "Some other item",
-            description = "abcdefghij",
-            value = 15901,
-            generateID = true
-        )
-        val third = MockedItem.consumable(
-            name = "Yet another item",
-            description = "098654321",
-            value = 12345,
-            generateID = false
-        )
-        val fourth = MockedItem.armour(
-            name = "Wow, another item",
-            description = "zyxwvuts",
-            value = 54321,
-            generateID = true
+    fun `Unequally instantiated item objects are not equal`() {
+        var first = Item.mocked(
+            name = "testing item 123",
+            type = ItemType.CONSUMABLE,
+            description = "some test item",
+            value = 12390,
+            damage = 4,
+            protection = 16,
+            courage = 1,
+            dexterity = 21,
+            wisdom = -4,
+            health = 200,
+            mana = 400
         )
 
-        dassert {
-            first isNotEqualTo second; first isNotEqualTo third; first isNotEqualTo fourth
-            second isNotEqualTo third; second isNotEqualTo fourth
-            third isNotEqualTo fourth
-        }
-    }
-
-    @Test
-    fun `An Item object can only be equal to another Item object`() {
-        val first = MockedItem.junk()
-        val second = "Item"
+        var second = Item.mocked(
+            name = "testing item 12345",
+            type = ItemType.WEAPON,
+            description = "some test item 2",
+            value = 123902,
+            damage = 42,
+            protection = 162,
+            courage = 12,
+            dexterity = 212,
+            wisdom = -42,
+            health = 2002,
+            mana = 4002
+        )
 
         dassert {
             first isNotEqualTo second
         }
-    }
 
-    @Test
-    fun `When creating an item, it is instantiated correctly`() {
-        val item: Item? = MockedItem.junk(
-            name = "test item",
-            description = "an item",
-            value = 20
-        )
+        first = Item.mocked(generateId = false)
+        second = Item.mocked(generateId = false)
+        val third = Item.mocked()
 
         dassert {
-            with(item!!) {
-                name equals "test item"
-                type equals ItemType.JUNK
-                description equals "an item"
-                value equals 20
-            }
+            first equals second
+            first isNotEqualTo third
+            third isNotEqualTo second
         }
     }
 }

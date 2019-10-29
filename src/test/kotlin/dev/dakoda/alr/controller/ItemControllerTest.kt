@@ -1,9 +1,9 @@
 package dev.dakoda.alr.controller
 
 import com.ninjasquad.springmockk.MockkBean
-import dev.dakoda.alr.controller.request.MockHTTPRequest
-import dev.dakoda.alr.domain.MockedItem
+import dev.dakoda.alr.controller.request.MockedHTTP
 import dev.dakoda.alr.domain.item.Item
+import dev.dakoda.alr.mocked
 import dev.dakoda.alr.parse
 import dev.dakoda.alr.service.ItemService
 import dev.dakoda.dassert.dassert
@@ -30,8 +30,8 @@ class ItemControllerTest @Autowired constructor(
 
     @Test
     fun `When hitting the item endpoint with a valid request body and a valid item ID, then receive a 200 OK response and an item`() {
-        val item = MockedItem.junk()
-        val itemRequest = MockHTTPRequest.getItem(item.id)
+        val item = Item.mocked()
+        val itemRequest = MockedHTTP.getItemRequest(item.id)
 
         every { service.getItem(any()) } returns item
         val result = mockMVC.get("/item/${itemRequest.id}") {
