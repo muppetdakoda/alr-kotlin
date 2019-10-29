@@ -1,6 +1,6 @@
 package dev.dakoda.alr.domain.item
 
-import dev.dakoda.alr.domain.Mocked
+import dev.dakoda.alr.domain.MockedItem
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -11,7 +11,7 @@ class ItemTest {
     @Test
     fun `When creating an item with a blank name, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Mocked.junk(
+            MockedItem.junk(
                 name = ""
             )
         }
@@ -20,7 +20,7 @@ class ItemTest {
     @Test
     fun `When creating an item with a negative monetary value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Mocked.junk(
+            MockedItem.junk(
                 name = "test item",
                 value = -1
             )
@@ -29,8 +29,8 @@ class ItemTest {
 
     @Test
     fun `Equally instantiated Item objects are equal`() {
-        val first = MockItem.generic(generateID = false)
-        val second = MockItem.generic(generateID = false)
+        val first = MockedItem.junk(generateID = false)
+        val second = MockedItem.junk(generateID = false)
 
         dassert {
             first equals second
@@ -40,25 +40,25 @@ class ItemTest {
 
     @Test
     fun `Unequally instantiated Item objects are not equal`() {
-        val first = MockItem.generic(
+        val first = MockedItem.junk(
             name = "Random item",
             description = "1234567890",
             value = 2340,
             generateID = false
         )
-        val second = MockItem.weapon(
+        val second = MockedItem.weapon(
             name = "Some other item",
             description = "abcdefghij",
             value = 15901,
             generateID = true
         )
-        val third = MockItem.consumable(
+        val third = MockedItem.consumable(
             name = "Yet another item",
             description = "098654321",
             value = 12345,
             generateID = false
         )
-        val fourth = MockItem.armour(
+        val fourth = MockedItem.armour(
             name = "Wow, another item",
             description = "zyxwvuts",
             value = 54321,
@@ -74,7 +74,7 @@ class ItemTest {
 
     @Test
     fun `An Item object can only be equal to another Item object`() {
-        val first = MockItem.generic()
+        val first = MockedItem.junk()
         val second = "Item"
 
         dassert {
@@ -84,7 +84,7 @@ class ItemTest {
 
     @Test
     fun `When creating an item, it is instantiated correctly`() {
-        val item: Item? = Mocked.junk(
+        val item: Item? = MockedItem.junk(
             name = "test item",
             description = "an item",
             value = 20

@@ -1,7 +1,7 @@
 package dev.dakoda.alr.domain.item
 
 import dev.dakoda.alr.domain.MockCharacter
-import dev.dakoda.alr.domain.Mocked
+import dev.dakoda.alr.domain.MockedItem
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -12,14 +12,14 @@ class ConsumableTest {
     @Test
     fun `When creating a consumable with a blank name, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Mocked.consumable(name = "")
+            MockedItem.consumable(name = "")
         }
     }
 
     @Test
     fun `When creating a consumable with a negative monetary value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            Mocked.consumable(
+            MockedItem.consumable(
                 name = "test item",
                 value = -1
             )
@@ -28,7 +28,7 @@ class ConsumableTest {
 
     @Test
     fun `When creating a consumable, it is instantiated correctly`() {
-        val consumable: Consumable? = Mocked.consumable(
+        val consumable: Consumable? = MockedItem.consumable(
             name = "test consumable",
             stats = MockCharacter.stats,
             description = "a consumable",

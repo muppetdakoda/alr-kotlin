@@ -1,6 +1,6 @@
 package dev.dakoda.alr.repository.service
 
-import dev.dakoda.alr.domain.Mocked
+import dev.dakoda.alr.domain.MockedItem
 import dev.dakoda.alr.exception.ItemNotFoundException
 import dev.dakoda.alr.repository.ItemRepository
 import dev.dakoda.alr.repository.entity.ItemEntity
@@ -26,11 +26,11 @@ class ItemDataServiceTest {
 
     @Test
     fun `When getting an item with a valid ID, return an item`() {
-        val itemEntity = Mocked.junkEntity()
+        val itemEntity = MockedItem.junkEntity()
 
         every { repository.findById(any()) } returns Optional.of(itemEntity)
 
-        val response = dataService.get(itemEntity.ID)
+        val response = dataService.get(itemEntity.id)
         with(response) {
             dassert {
                 id equals itemEntity.id
@@ -44,7 +44,7 @@ class ItemDataServiceTest {
 
     @Test
     fun `When getting an item with an invalid ID, throw an item not found exception`() {
-        val itemEntity = Mocked.junkEntity()
+        val itemEntity = MockedItem.junkEntity()
 
         every { repository.findById(any()) } returns Optional.empty()
 
@@ -55,8 +55,8 @@ class ItemDataServiceTest {
 
     @Test
     fun `When saving a new item, then a call is made to save the item to the repository`() {
-        val item = Mocked.junk()
-        val itemEntity = Mocked.junkEntity(
+        val item = MockedItem.junk()
+        val itemEntity = MockedItem.junkEntity(
             id = item.id,
             name = item.name,
             description = item.description,

@@ -1,6 +1,6 @@
 package dev.dakoda.alr.service
 
-import dev.dakoda.alr.domain.Mocked
+import dev.dakoda.alr.domain.MockedItem
 import dev.dakoda.alr.repository.service.ItemDataService
 import dev.dakoda.dassert.dassert
 import io.mockk.every
@@ -26,7 +26,7 @@ class ItemServiceTest {
 
     @Test
     fun `When getting an item, then the item is retrieved from the data service`() {
-        val item = Mocked.junk()
+        val item = MockedItem.junk()
 
         every { dataService.get(any()) } returns item
 
@@ -40,7 +40,7 @@ class ItemServiceTest {
 
     @Test
     fun `When saving an item, then a call is made to the data service to save the item`() {
-        val item = Mocked.junk()
+        val item = MockedItem.junk()
 
         every { dataService.save(any()) } just runs
 
@@ -51,7 +51,7 @@ class ItemServiceTest {
 
     @Test
     fun `When saving an item with no ID associated with it, then an ID is generated`() {
-        val item = Mocked.junk(generateID = false)
+        val item = MockedItem.junk(generateID = false)
 
         every { dataService.save(any()) } just runs
 

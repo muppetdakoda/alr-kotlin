@@ -9,7 +9,7 @@ import dev.dakoda.alr.domain.item.Weapon
 import dev.dakoda.alr.repository.entity.ItemEntity
 import java.util.UUID
 
-class Mocked {
+class MockedItem {
 
     companion object {
 

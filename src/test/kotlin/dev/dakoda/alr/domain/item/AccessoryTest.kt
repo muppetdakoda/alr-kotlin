@@ -1,7 +1,7 @@
 package dev.dakoda.alr.domain.item
 
 import dev.dakoda.alr.domain.MockCharacter
-import dev.dakoda.alr.domain.Mocked
+import dev.dakoda.alr.domain.MockedItem
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -28,7 +28,7 @@ class AccessoryTest {
 
     @Test
     fun `When creating an accessory, it is instantiated correctly`() {
-        val accessory: Accessory? = Mocked.accessory(
+        val accessory: Accessory? = MockedItem.accessory(
             name = "test accessory",
             stats = MockCharacter.stats,
             description = "an accessory",
