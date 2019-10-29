@@ -23,15 +23,26 @@ open class Item(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is Item &&
-                other.id == this.id &&
-                other.name == this.name &&
-                other.type == this.type &&
-                other.description == this.description &&
-                other.value == this.value
+        return other is Item && true
+            .and(
+                if (hasID() && other.hasID()) {
+                    other.id == this.id
+                } else {
+                    !hasID() && !other.hasID()
+                })
+            .and(other.name == this.name)
+            .and(other.type == this.type)
+            .and(other.description == this.description)
+            .and(other.value == this.value)
+            .and(other.hashCode() == this.hashCode())
     }
 
     override fun hashCode(): Int {
-        return super.hashCode()
+        var result = name.hashCode()
+        result = 31 * result + type.hashCode()
+        result = 31 * result + description.hashCode()
+        result = 31 * result + value
+        if (hasID()) result = 31 * result + id.hashCode()
+        return result
     }
 }

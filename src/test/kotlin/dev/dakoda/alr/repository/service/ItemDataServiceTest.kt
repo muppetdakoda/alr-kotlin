@@ -16,10 +16,10 @@ import org.junit.jupiter.api.extension.ExtendWith
 import java.util.Optional
 
 @ExtendWith(MockKExtension::class)
-class ItemDataServiceImplTest {
+class ItemDataServiceTest {
 
     @InjectMockKs
-    lateinit var dataService: ItemDataServiceImpl
+    lateinit var dataService: ItemDataService
 
     @MockK
     lateinit var repository: ItemRepository
@@ -30,7 +30,7 @@ class ItemDataServiceImplTest {
 
         every { repository.findById(any()) } returns Optional.of(itemEntity)
 
-        val response = dataService.getItem(itemEntity.ID)
+        val response = dataService.get(itemEntity.ID)
         with(response) {
             dassert {
                 id equals itemEntity.ID
@@ -49,7 +49,7 @@ class ItemDataServiceImplTest {
         every { repository.findById(any()) } returns Optional.empty()
 
         assertThrows<ItemNotFoundException> {
-            dataService.getItem(itemEntity.ID)
+            dataService.get(itemEntity.ID)
         }
     }
 
@@ -65,7 +65,7 @@ class ItemDataServiceImplTest {
 
         every { repository.save(any<ItemEntity>()) } returns itemEntity
 
-        dataService.saveItem(item)
+        dataService.save(item)
 
         verify(exactly = 1) { repository.save(any<ItemEntity>()) }
     }

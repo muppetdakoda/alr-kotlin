@@ -1,7 +1,11 @@
 package dev.dakoda.alr.domain
 
 import dev.dakoda.alr.domain.character.Stat
-import dev.dakoda.alr.domain.item.*
+import dev.dakoda.alr.domain.item.Accessory
+import dev.dakoda.alr.domain.item.Armour
+import dev.dakoda.alr.domain.item.Consumable
+import dev.dakoda.alr.domain.item.Item
+import dev.dakoda.alr.domain.item.Weapon
 import dev.dakoda.alr.repository.entity.ItemEntity
 import java.util.UUID
 

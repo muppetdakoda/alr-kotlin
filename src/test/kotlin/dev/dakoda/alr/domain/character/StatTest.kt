@@ -34,7 +34,7 @@ class StatTest {
     }
 
     @Test
-    fun `Two equally instantiated Stat objects are equal`() {
+    fun `Equally instantiated Stat objects are equal`() {
         val first = MockCharacter.stat(
             type = StatType.DEXTERITY,
             value = 100f
