@@ -1,2 +1,13 @@
-INSERT INTO ALR_ITEM (ITEM_ID, ITEM_NAME, ITEM_TYPE, ITEM_DESCRIPTION, ITEM_VALUE)
-VALUES ('607baeca-bcda-4628-97e7-9beea73c8ca1', 'Default Sword', 'WEAPON', 'some value', '1');
+INSERT INTO ALR_ITEM
+(ITEM_ID,
+ ITEM_NAME, ITEM_TYPE, ITEM_DESCRIPTION,
+ ITEM_VALUE,
+ ITEM_DAMAGE, ITEM_PROTECTION,
+ ITEM_STAT_COURAGE, ITEM_STAT_DEXTERITY, ITEM_STAT_WISDOM,
+ ITEM_STAT_HEALTH, ITEM_STAT_MANA)
+VALUES ('607baeca-bcda-4628-97e7-9beea73c8ca1',
+        'Default Sword', 'WEAPON', 'some value',
+        '1',
+        '5', '0',
+        '0', '0', '0',
+        '0', '0');
