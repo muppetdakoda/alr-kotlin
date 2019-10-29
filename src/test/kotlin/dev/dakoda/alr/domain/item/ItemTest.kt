@@ -28,6 +28,61 @@ class ItemTest {
     }
 
     @Test
+    fun `Equally instantiated Item objects are equal`() {
+        val first = MockItem.generic(generateID = false)
+        val second = MockItem.generic(generateID = false)
+
+        dassert {
+            first equals second
+            first.hashCode() equals second.hashCode()
+        }
+    }
+
+    @Test
+    fun `Unequally instantiated Item objects are not equal`() {
+        val first = MockItem.generic(
+            name = "Random item",
+            description = "1234567890",
+            value = 2340,
+            generateID = false
+        )
+        val second = MockItem.weapon(
+            name = "Some other item",
+            description = "abcdefghij",
+            value = 15901,
+            generateID = true
+        )
+        val third = MockItem.consumable(
+            name = "Yet another item",
+            description = "098654321",
+            value = 12345,
+            generateID = false
+        )
+        val fourth = MockItem.armour(
+            name = "Wow, another item",
+            description = "zyxwvuts",
+            value = 54321,
+            generateID = true
+        )
+
+        dassert {
+            first isNotEqualTo second; first isNotEqualTo third; first isNotEqualTo fourth
+            second isNotEqualTo third; second isNotEqualTo fourth
+            third isNotEqualTo fourth
+        }
+    }
+
+    @Test
+    fun `An Item object can only be equal to another Item object`() {
+        val first = MockItem.generic()
+        val second = "Item"
+
+        dassert {
+            first isNotEqualTo second
+        }
+    }
+
+    @Test
     fun `When creating an item, it is instantiated correctly`() {
         val item: Item? = Mocked.junk(
             name = "test item",

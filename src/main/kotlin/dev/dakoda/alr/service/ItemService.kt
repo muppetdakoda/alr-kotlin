@@ -11,13 +11,13 @@ class ItemService(
 ) {
 
     fun getItem(id: String): Item {
-        return dataService.getItem(id)
+        return dataService.get(id)
     }
 
     fun saveItem(item: Item) {
         if (!item.hasID()) {
             item.id = UUID.randomUUID().toString()
         }
-        dataService.saveItem(item)
+        dataService.save(item)
     }
 }
