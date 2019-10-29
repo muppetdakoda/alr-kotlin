@@ -6,7 +6,7 @@ import org.valiktor.validate
 
 open class Item(
     val name: String,
-    val type: ItemType = ItemType.GENERIC,
+    val type: ItemType = ItemType.JUNK,
     val description: String = "",
     val value: Int = 0
 ) {

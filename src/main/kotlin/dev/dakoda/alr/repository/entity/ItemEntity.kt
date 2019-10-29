@@ -11,7 +11,7 @@ class ItemEntity(
 
     @Id
     @Column(name = "ITEM_ID", nullable = false)
-    val ID: String,
+    val id: String,
 
     @Column(name = "ITEM_NAME")
     val name: String,

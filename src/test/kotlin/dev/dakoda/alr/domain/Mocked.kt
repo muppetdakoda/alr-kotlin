@@ -1,17 +1,21 @@
 package dev.dakoda.alr.domain
 
 import dev.dakoda.alr.domain.character.Stat
-import dev.dakoda.alr.domain.item.*
+import dev.dakoda.alr.domain.item.Accessory
+import dev.dakoda.alr.domain.item.Armour
+import dev.dakoda.alr.domain.item.Consumable
+import dev.dakoda.alr.domain.item.Item
+import dev.dakoda.alr.domain.item.Weapon
 import dev.dakoda.alr.repository.entity.ItemEntity
 import java.util.UUID
 
-class MockItem {
+class Mocked {
 
     companion object {
 
-        fun generic(
-            name: String = "Mock generic item",
-            description: String = "Mock generic item description",
+        fun junk(
+            name: String = "Mocked junk item",
+            description: String = "Mocked junk item description",
             value: Int = 20,
             generateID: Boolean = true
         ) = Item(
@@ -20,23 +24,23 @@ class MockItem {
             value = value
         ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
-        fun genericEntity(
+        fun junkEntity(
             id: String = UUID.randomUUID().toString(),
-            name: String = "Mock generic item",
-            description: String = "Mock generic item description",
+            name: String = "Mocked junk item",
+            description: String = "Mocked junk item description",
             value: Int = 20
         ) = ItemEntity(
-            ID = id,
+            id = id,
             name = name,
-            type = "GENERIC",
+            type = "JUNK",
             description = description,
             value = value
         )
 
         fun weapon(
-            name: String = "Mock weapon",
+            name: String = "Mocked weapon",
             damage: Int = 1,
-            description: String = "Mock weapon description",
+            description: String = "Mocked weapon description",
             value: Int = 20,
             generateID: Boolean = true
         ) = Weapon(
@@ -47,9 +51,9 @@ class MockItem {
         ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
         fun consumable(
-            name: String = "Mock consumable",
+            name: String = "Mocked consumable",
             stats: MutableList<Stat> = mutableListOf(),
-            description: String = "Mock consumable description",
+            description: String = "Mocked consumable description",
             value: Int = 20,
             generateID: Boolean = true
         ) = Consumable(
@@ -60,9 +64,9 @@ class MockItem {
         ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
         fun armour(
-            name: String = "Mock piece of armour",
+            name: String = "Mocked piece of armour",
             protection: Int = 1,
-            description: String = "Mock piece of armour description",
+            description: String = "Mocked piece of armour description",
             value: Int = 20,
             generateID: Boolean = true
         ) = Armour(
@@ -73,9 +77,9 @@ class MockItem {
         ).apply { if (generateID) id = UUID.randomUUID().toString() }
 
         fun accessory(
-            name: String = "Mock accessory",
+            name: String = "Mocked accessory",
             stats: MutableList<Stat> = mutableListOf(),
-            description: String = "Mock accessory description",
+            description: String = "Mocked accessory description",
             value: Int = 20,
             generateID: Boolean = true
         ) = Accessory(

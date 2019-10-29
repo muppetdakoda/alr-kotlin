@@ -17,7 +17,7 @@ plugins {
 
 apply(plugin = "io.spring.dependency-management")
 
-group = "com.dakoda"
+group = "dev.dakoda"
 version = "0.0"
 
 repositories {

@@ -1,6 +1,6 @@
 package dev.dakoda.alr.repository.service
 
-import dev.dakoda.alr.domain.MockItem
+import dev.dakoda.alr.domain.Mocked
 import dev.dakoda.alr.exception.ItemNotFoundException
 import dev.dakoda.alr.repository.ItemRepository
 import dev.dakoda.alr.repository.entity.ItemEntity
@@ -26,14 +26,14 @@ class ItemDataServiceImplTest {
 
     @Test
     fun `When getting an item with a valid ID, return an item`() {
-        val itemEntity = MockItem.genericEntity()
+        val itemEntity = Mocked.junkEntity()
 
         every { repository.findById(any()) } returns Optional.of(itemEntity)
 
-        val response = dataService.getItem(itemEntity.ID)
+        val response = dataService.getItem(itemEntity.id)
         with(response) {
             dassert {
-                id equals itemEntity.ID
+                id equals itemEntity.id
                 name equals itemEntity.name
                 type.name equals itemEntity.type
                 description equals itemEntity.description
@@ -44,19 +44,19 @@ class ItemDataServiceImplTest {
 
     @Test
     fun `When getting an item with an invalid ID, throw an item not found exception`() {
-        val itemEntity = MockItem.genericEntity()
+        val itemEntity = Mocked.junkEntity()
 
         every { repository.findById(any()) } returns Optional.empty()
 
         assertThrows<ItemNotFoundException> {
-            dataService.getItem(itemEntity.ID)
+            dataService.getItem(itemEntity.id)
         }
     }
 
     @Test
     fun `When saving a new item, then a call is made to save the item to the repository`() {
-        val item = MockItem.generic()
-        val itemEntity = MockItem.genericEntity(
+        val item = Mocked.junk()
+        val itemEntity = Mocked.junkEntity(
             id = item.id,
             name = item.name,
             description = item.description,

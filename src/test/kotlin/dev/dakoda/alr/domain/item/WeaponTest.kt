@@ -1,6 +1,6 @@
 package dev.dakoda.alr.domain.item
 
-import dev.dakoda.alr.domain.MockItem
+import dev.dakoda.alr.domain.Mocked
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -11,7 +11,7 @@ class WeaponTest {
     @Test
     fun `When creating a weapon with a blank name, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            MockItem.weapon(
+            Mocked.weapon(
                 name = "",
                 damage = 1
             )
@@ -21,7 +21,7 @@ class WeaponTest {
     @Test
     fun `When creating a weapon with a negative monetary value, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            MockItem.weapon(
+            Mocked.weapon(
                 name = "test item",
                 damage = 1,
                 value = -1
@@ -32,7 +32,7 @@ class WeaponTest {
     @Test
     fun `When creating a weapon with negative damage, then throw a Valiktor constraint violation exception`() {
         assertThrows<ConstraintViolationException> {
-            MockItem.weapon(
+            Mocked.weapon(
                 name = "test item",
                 damage = -1
             )
@@ -41,7 +41,7 @@ class WeaponTest {
 
     @Test
     fun `When creating a weapon, it is instantiated correctly`() {
-        val weapon: Weapon? = MockItem.weapon(
+        val weapon: Weapon? = Mocked.weapon(
             name = "test weapon",
             damage = 1,
             description = "a weapon",
