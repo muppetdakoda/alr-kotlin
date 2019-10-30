@@ -31,11 +31,24 @@ class ItemServiceTest {
 
         every { dataService.get(any()) } returns item
 
-        val responseItem = service.getItem(item.id)
+        val responseItem = service.get(item.id)
         with (responseItem) {
             dassert {
                 this@with equals item
             }
+        }
+    }
+
+    @Test
+    fun `When getting all items, return a list of all items stored`() {
+        val items = (1..3).map { Item.mocked() }
+
+        every { dataService.all() } returns items
+
+        val response = service.all()
+
+        dassert {
+            items equals response
         }
     }
 
@@ -45,7 +58,7 @@ class ItemServiceTest {
 
         every { dataService.save(any()) } just runs
 
-        service.saveItem(item)
+        service.save(item)
 
         verify(exactly = 1) { dataService.save(item) }
     }
@@ -58,7 +71,7 @@ class ItemServiceTest {
 
         mockkStatic(UUID::class) {
             every { UUID.randomUUID().toString() } returns "e7d55e32-b0bf-4dc1-ba13-2083b33a9f14"
-            service.saveItem(item)
+            service.save(item)
             verify(exactly = 1) { UUID.randomUUID().toString() }
         }
     }

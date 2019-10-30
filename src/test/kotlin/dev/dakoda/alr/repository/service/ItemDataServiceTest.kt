@@ -45,6 +45,25 @@ class ItemDataServiceTest {
     }
 
     @Test
+    fun `When getting all items, return a list of all items stored`() {
+        val itemEntities: List<ItemEntity> = (1..3).map { ItemEntity.mocked() }
+        val convertedEntities: List<Item> = itemEntities.map {
+            with(dataService) { it.convert() }
+        }
+
+        every { repository.findAll() } returns itemEntities
+
+        val response = dataService.all()
+        with(response) returned@{
+            with(convertedEntities) original@{
+                dassert {
+                    this@returned equals this@original
+                }
+            }
+        }
+    }
+
+    @Test
     fun `When getting an item with an invalid ID, throw an item not found exception`() {
         val itemEntity = Item.mocked()
 

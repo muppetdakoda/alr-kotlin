@@ -4,7 +4,7 @@ val jvmTarget = "1.8"
 val valiktorVersion = "0.5.0"
 val junitVersion = "5.3.1"
 val assertJVersion = "3.11.1"
-val dassertVersion = "1.0.1"
+val dassertVersion = "1.1.0-SNAP"
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.3.31"

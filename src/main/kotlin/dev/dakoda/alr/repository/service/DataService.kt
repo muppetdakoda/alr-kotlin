@@ -4,5 +4,7 @@ interface DataService<T> {
 
     fun get(id: String): T
 
-    fun save(item: T)
+    fun save(obj: T)
+
+    fun all(): List<T>
 }

@@ -10,11 +10,13 @@ class ItemService(
     private val dataService: ItemDataService
 ) {
 
-    fun getItem(id: String): Item {
+    fun all(): List<Item> = dataService.all()
+
+    operator fun get(id: String): Item {
         return dataService.get(id)
     }
 
-    fun saveItem(item: Item) {
+    fun save(item: Item) {
         if (!item.hasId()) {
             item.id = UUID.randomUUID().toString()
         }

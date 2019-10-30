@@ -12,18 +12,20 @@ class ItemDataService(
     private val repository: ItemRepository
 ) : DataService<Item> {
 
-    override fun get(id: String): Item {
+    override operator fun get(id: String): Item {
         val repositoryResponse = repository.findById(id)
         if (repositoryResponse.isPresent) {
             return repositoryResponse.get().convert()
         } else throw ItemNotFoundException()
     }
 
-    override fun save(item: Item) {
-        repository.save(item.convert())
+    override fun save(obj: Item) {
+        repository.save(obj.convert())
     }
 
-    private fun ItemEntity.convert() = Item(
+    override fun all(): List<Item> = repository.findAll().map { it.convert() }
+
+    fun ItemEntity.convert() = Item(
         name, ItemType.valueOf(type), description, value,
         damage, protection,
         courage, dexterity, wisdom,
@@ -32,7 +34,7 @@ class ItemDataService(
         this.id = this@convert.id
     }
 
-    private fun Item.convert() = ItemEntity(
+    fun Item.convert() = ItemEntity(
         id, name, type.name, description, value,
         damage, protection,
         courage, dexterity, wisdom,

@@ -1,7 +1,7 @@
 package dev.dakoda.alr.controller
 
 import com.ninjasquad.springmockk.MockkBean
-import dev.dakoda.alr.controller.request.MockedHTTP
+import dev.dakoda.alr.controller.item.ItemController
 import dev.dakoda.alr.domain.item.Item
 import dev.dakoda.alr.mocked
 import dev.dakoda.alr.parse
@@ -29,23 +29,40 @@ class ItemControllerTest @Autowired constructor(
     lateinit var service: ItemService
 
     @Test
-    fun `When hitting the item endpoint with a valid request body and a valid item ID, then receive a 200 OK response and an item`() {
+    fun `When hitting the item endpoint with a valid item id path variable, then receive a 200 OK response and an item`() {
         val item = Item.mocked()
-        val itemRequest = MockedHTTP.getItemRequest(item.id)
 
-        every { service.getItem(any()) } returns item
-        val result = mockMVC.get("/item/${itemRequest.id}") {
+        every { service[any()] } returns item
+        val result = mockMVC.get("/item/${item.id}") {
             contentType = MediaType.APPLICATION_JSON
             accept = MediaType.APPLICATION_JSON
         }.andReturn()
 
         with(result) result@{
             dassert {
-                this@result.response.status equals 200
+                response.status equals 200
 
                 val itemResponse = parse<Item>()
-                itemResponse.id equals itemRequest.id
+                itemResponse.id equals item.id
             }
         }
     }
+
+    // TODO
+//    @Test
+//    fun `When saving an item with a valid request body, then receive a 201 Created response`() {
+//        val itemPostRequest = ItemPostRequest.mocked()
+//        val parsedItem = Item.mocked()
+//
+//        every { service.save(any()) } just runs
+//        val result = mockMVC.post("/item") {
+//            contentType = MediaType.APPLICATION_JSON
+//            content = itemPostRequest
+//            accept = MediaType.APPLICATION_JSON
+//        }.andReturn()
+//
+//        with(result) {
+//            dassert { response.status equals 201 }
+//        }
+//    }
 }
