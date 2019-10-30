@@ -6,6 +6,11 @@ import dev.dakoda.alr.domain.item.ItemType
 import dev.dakoda.alr.repository.entity.ItemEntity
 import java.util.UUID
 
+@Suppress("unused")
+fun List<Item>.mocked(count: Int = 3): List<Item> = with(1..count) {
+    map { i -> Item.mocked(name = "$i") }
+}
+
 fun Item.Companion.mocked(
     name: String = "Mocked item",
     type: ItemType = ItemType.JUNK,

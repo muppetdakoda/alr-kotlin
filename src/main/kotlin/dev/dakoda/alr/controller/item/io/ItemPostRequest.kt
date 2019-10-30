@@ -1,6 +1,7 @@
 package dev.dakoda.alr.controller.item.io
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import dev.dakoda.alr.domain.item.ItemType
 
 data class ItemPostRequest(
@@ -15,6 +16,6 @@ data class ItemPostRequest(
     @field:JsonProperty(required = false) val wisdom: Int = 0,
     @field:JsonProperty(required = false) val health: Int = 0,
     @field:JsonProperty(required = false) val mana: Int = 0
-) {
+) : ALRJson {
     companion object
 }

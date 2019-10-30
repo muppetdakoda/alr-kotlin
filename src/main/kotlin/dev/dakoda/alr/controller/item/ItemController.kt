@@ -19,18 +19,14 @@ class ItemController(
     @GetMapping("/item")
     fun all(): ResponseEntity<List<ItemGetRequestShort>> {
         return ResponseEntity.status(200).body(
-            ItemParser.mitigatedCollective(
-                service.all()
-            )
+            ItemParser.mitigatedCollective(service.all())
         )
     }
 
     @GetMapping("/item_verbose")
     fun allVerbose(): ResponseEntity<List<ItemGetRequest>> {
         return ResponseEntity.status(200).body(
-            ItemParser.mitigatedCollectiveVerbose(
-                service.all()
-            )
+            ItemParser.mitigatedCollectiveVerbose(service.all())
         )
     }
 
