@@ -1,8 +1,8 @@
-package dev.dakoda.alr.controller.item.io
+package dev.dakoda.alr.controller.item.http
 
 import dev.dakoda.alr.domain.item.ItemType
 
-class ItemGetRequestShort(
+class ItemResponseShort(
     val id: String,
     val name: String,
     val type: ItemType,

@@ -1,4 +1,4 @@
-package dev.dakoda.alr.controller.item.io
+package dev.dakoda.alr.controller.item.http
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 

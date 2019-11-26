@@ -38,6 +38,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+")
+    implementation("au.com.console:kassava:1.0.0")
 
     runtimeOnly("org.hsqldb:hsqldb")
 

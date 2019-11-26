@@ -1,6 +1,6 @@
 package dev.dakoda.alr.domain.item
 
-import dev.dakoda.alr.mocked
+import dev.dakoda.alr.fake
 import dev.dakoda.dassert.dassert
 import org.junit.jupiter.api.Test
 
@@ -8,7 +8,7 @@ class ItemTest {
 
     @Test
     fun `When creating an item, it is instantiated correctly`() {
-        val mockedItem = Item.mocked(
+        val mockedItem = Item.fake(
             name = "testing item 123",
             type = ItemType.CONSUMABLE,
             description = "some test item",
@@ -41,7 +41,7 @@ class ItemTest {
 
     @Test
     fun `Unequally instantiated item objects are not equal`() {
-        var first = Item.mocked(
+        var first = Item.fake(
             name = "testing item 123",
             type = ItemType.CONSUMABLE,
             description = "some test item",
@@ -55,7 +55,7 @@ class ItemTest {
             mana = 400
         )
 
-        var second = Item.mocked(
+        var second = Item.fake(
             name = "testing item 12345",
             type = ItemType.WEAPON,
             description = "some test item 2",
@@ -73,9 +73,9 @@ class ItemTest {
             first isNotEqualTo second
         }
 
-        first = Item.mocked(generateId = false)
-        second = Item.mocked(generateId = false)
-        val third = Item.mocked()
+        first = Item.fake(generateId = false)
+        second = Item.fake(generateId = false)
+        val third = Item.fake()
 
         dassert {
             first equals second

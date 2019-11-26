@@ -4,7 +4,7 @@ import dev.dakoda.alr.domain.item.Item
 import dev.dakoda.alr.domain.item.ItemType
 import dev.dakoda.alr.exception.ItemNotFoundException
 import dev.dakoda.alr.repository.ItemRepository
-import dev.dakoda.alr.repository.entity.ItemEntity
+import dev.dakoda.alr.repository.entity.item.ItemEntity
 import org.springframework.stereotype.Service
 
 @Service
@@ -26,16 +26,14 @@ class ItemDataService(
     override fun all(): List<Item> = repository.findAll().map { it.convert() }
 
     fun ItemEntity.convert() = Item(
-        name, ItemType.valueOf(type), description, value,
+        id, name, ItemType.valueOf(type), description, value,
         damage, protection,
         courage, dexterity, wisdom,
         health, mana
-    ).apply {
-        this.id = this@convert.id
-    }
+    )
 
     fun Item.convert() = ItemEntity(
-        id, name, type.name, description, value,
+        id, name, type, description, value,
         damage, protection,
         courage, dexterity, wisdom,
         health, mana

@@ -1,67 +1,45 @@
 package dev.dakoda.alr.domain.item
 
+import au.com.console.kassava.kotlinEquals
+import au.com.console.kassava.kotlinToString
+import dev.dakoda.alr.domain.Attributes
+import dev.dakoda.alr.domain.Stats
+import dev.dakoda.alr.domain.Vitals
 import org.valiktor.functions.isNotBlank
 import org.valiktor.functions.isPositiveOrZero
 import org.valiktor.validate
+import java.util.Objects
 
 class Item(
+    val id: String,
     val name: String,
-    val type: ItemType,
+    type: ItemType,
     val description: String,
     val value: Int,
-    val damage: Int = 0,
-    val protection: Int = 0,
-    val courage: Int = 0,
-    val dexterity: Int = 0,
-    val wisdom: Int = 0,
-    val health: Int = 0,
-    val mana: Int = 0
+    val attributes: Attributes,
+    val stats: Stats,
+    val vitals: Vitals
 ) {
 
-    lateinit var id: String
+    var type: String = type.name
 
-    fun hasId(): Boolean = ::id.isInitialized
+    private val props = arrayOf(
+        Item::id, Item::name, Item::type, Item::description, Item::value, Item::attributes, Item::stats, Item::vitals
+    )
 
     init {
-        @Suppress("LeakingThis") validate(this) {
+        validate(this) {
+            validate(Item::id).isNotBlank()
             validate(Item::name).isNotBlank()
             validate(Item::value).isPositiveOrZero()
-            validate(Item::damage).isPositiveOrZero()
-            validate(Item::protection).isPositiveOrZero()
         }
     }
 
-    override fun equals(other: Any?): Boolean {
-        return other is Item && true
-            .and(
-                if (hasId() && other.hasId()) {
-                    other.id == this.id
-                } else {
-                    !hasId() && !other.hasId()
-                }
-            )
-            .and(other.name == this.name)
-            .and(other.type == this.type)
-            .and(other.description == this.description)
-            .and(other.value == this.value)
-            .and(other.damage == this.damage)
-            .and(other.protection == this.protection)
-            .and(other.courage == this.courage)
-            .and(other.dexterity == this.dexterity)
-            .and(other.wisdom == this.dexterity)
-            .and(other.health == this.health)
-            .and(other.mana == this.mana)
-            .and(other.hashCode() == this.hashCode())
-    }
+    override fun equals(other: Any?) = kotlinEquals(other, props)
 
-    override fun hashCode(): Int {
-        var result = name.hashCode()
-        result = 31 * result + type.hashCode()
-        result = 31 * result + description.hashCode()
-        result = 31 * result + value
-        if (hasId()) result = 31 * result + id.hashCode()
-        return result
-    }
+    override fun toString() = kotlinToString(props)
+
+    override fun hashCode() = Objects.hash(*props)
 
     companion object
 }
