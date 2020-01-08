@@ -30,25 +30,41 @@ dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
-    implementation("org.valiktor", "valiktor-core", valiktorVersion)
-    implementation("com.github.dakodabutnot", "dassert", dassertVersion)
-    implementation("org.springframework.boot", "spring-boot-dependencies", "2.0.5.RELEASE")
+
+    // Helper libraries
+    implementation("au.com.console:kassava:1.0.0")
+    implementation("org.valiktor:valiktor-core:$valiktorVersion")
+
+    // Dependency Injection
+    implementation("org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+")
-    implementation("au.com.console:kassava:1.0.0")
 
+    // External frameworks
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+")
     runtimeOnly("org.hsqldb:hsqldb")
 
+    // - TESTING -
+
+    // Assertions
+    testImplementation("com.github.dakodabutnot:dassert:$dassertVersion")
+    testImplementation("org.assertj:assertj-core:$assertJVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+
+    // Mocking
+    testImplementation("io.mockk:mockk:1.9.3")
     testImplementation("com.ninja-squad:springmockk:1.1.3") {
         exclude(module = "mockito-core")
     }
-    testImplementation("org.assertj", "assertj-core", assertJVersion)
-    testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
-    testImplementation("io.mockk:mockk:1.9.3")
-    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
+
+    // Testing lifecycle
+    implementation("io.cucumber:cucumber-spring:4.7.4")
+    testImplementation("io.cucumber:cucumber-java8:4.7.4")
+    testImplementation("io.cucumber:cucumber-junit:4.7.4")
+
 }
 
 tasks.withType<KotlinCompile> {
