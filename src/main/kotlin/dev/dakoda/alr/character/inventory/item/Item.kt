@@ -1,5 +1,6 @@
 package dev.dakoda.alr.character.inventory.item
 
+import dev.dakoda.alr.character.inventory.item.ItemRarity.BASIC
 import java.util.UUID
 
 class Item(
@@ -8,5 +9,5 @@ class Item(
     description: String = "",
     value: Long = 0,
     image: String = "",
-    rarity: ItemRarity = ItemRarity.BASIC
+    rarity: ItemRarity = BASIC
 )
