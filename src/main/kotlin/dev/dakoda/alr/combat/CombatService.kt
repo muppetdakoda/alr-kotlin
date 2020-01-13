@@ -1,9 +1,7 @@
 package dev.dakoda.alr.combat
 
 import dev.dakoda.alr.character.inventory.item.Weapon
-import dev.dakoda.alr.character.stats.StatEffect.TickingEffect
 import dev.dakoda.alr.character.stats.StatsService
-import kotlin.random.Random
 
 object CombatService {
 
@@ -13,7 +11,9 @@ object CombatService {
 
     fun spell(user: Combatant, spell: Spell, receiver: Combatant) {
         // TODO
-        Effect.rejuvenation(receiver, 0.0, 0)
+        spell.props.forEach {
+
+        }
     }
 
     enum class Effect {
@@ -34,44 +34,15 @@ object CombatService {
                 }
             }
 
-            // Apply a tick of 15% physical damage (or specified percent)
-            // for 1 to 3 turns (or specified amount of turns)
-            fun bleed(attacker: Combatant, receiver: Combatant, percent: Int = 15, turns: Int = 0) {
-                val tick = (percent / 100) * attacker.phys
-                val turnsCalc = turns.takeIf { it > 0 } ?: Random.nextInt(1, 4)
-                StatsService.applyEffect(receiver.stats,TickingEffect.bleed(tick, turnsCalc))
-            }
-
-            // Apply a tick of 10% conditional damage (or specified percent)
-            // for 2 to 5 turns (or specified amount of turns)
-            fun poison(attacker: Combatant, receiver: Combatant, percent: Int = 10, turns: Int = 0) {
-                val tick = (percent / 100) * attacker.cond
-                val turnsCalc = turns.takeIf { it > 0 } ?: Random.nextInt(2, 6)
-                StatsService.applyEffect(receiver.stats, TickingEffect.poison(tick, turnsCalc))
-            }
-
-            // Apply a tick of regeneration
-            // for a certain amount of turns and healing
-            fun rejuvenation(receiver: Combatant, tick: Double, turns: Int) {
-                StatsService.applyEffect(receiver.stats, TickingEffect.rejuvenation(tick, turns))
-            }
-
-            // Apply a tick of percentage-based regeneration
-            // for a certain amount of turns and healing
-            fun rejuvenationPercent(receiver: Combatant, percent: Int, turns: Int) {
-                val tick = percent * receiver.stats.healthMax
-                StatsService.applyEffect(receiver.stats, TickingEffect.rejuvenation(tick, turns))
-            }
-
-            private val Combatant.phys get() = with(this.equipment) {
+            val Combatant.phys get() = with(this.equipment) {
                 return@with if (isHoldingDoubleHanded) mainHand.phys else (mainHand.phys + offHand.phys)
             }
 
-            private val Combatant.cond get() = with(this.equipment) {
+            val Combatant.cond get() = with(this.equipment) {
                 return@with if (isHoldingDoubleHanded) mainHand.cond else (mainHand.cond + offHand.cond)
             }
 
-            private val Combatant.ether get() = with(this.equipment) {
+            val Combatant.ether get() = with(this.equipment) {
                 return@with if (isHoldingDoubleHanded) mainHand.ether else (mainHand.ether + offHand.ether)
             }
 

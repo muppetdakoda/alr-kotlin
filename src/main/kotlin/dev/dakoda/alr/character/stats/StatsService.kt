@@ -4,14 +4,14 @@ import dev.dakoda.alr.combat.Damages
 
 object StatsService {
 
-    fun applyEffect(stats: Stats, effect: StatEffect) = stats.currentEffects.add(effect)
+    fun applyEffect(stats: Stats, effect: Effect) = stats.currentEffects.add(effect)
 
-    fun removeEffect(stats: Stats, effect: StatEffect) = stats.currentEffects.remove(effect)
+    fun removeEffect(stats: Stats, effect: Effect) = stats.currentEffects.remove(effect)
 
     fun calculateTickingEffects(stats: Stats) {
         with(stats) {
-            val markedForRemoval = mutableListOf<StatEffect.TickingEffect>()
-            currentEffects.filterIsInstance<StatEffect.TickingEffect>().forEach {
+            val markedForRemoval = mutableListOf<Effect.TickingEffect>()
+            currentEffects.filterIsInstance<Effect.TickingEffect>().forEach {
                 if (it.turnsLeft > 0) {
                     ticksThisTurn.add(it.apply {
                         turnsLeft -= 1
@@ -35,7 +35,7 @@ object StatsService {
     }
 
     fun calculateOutrightEffects(stats: Stats) = with(stats) {
-        currentEffects.filterIsInstance<StatEffect.OutrightEffect>().forEach {
+        currentEffects.filterIsInstance<Effect.StatusEffect>().forEach {
             healthMaxDiff += it.healthMax
             manaMaxDiff += it.manaMax
             courageDiff += it.courage
@@ -49,10 +49,10 @@ object StatsService {
     fun clearEffects(stats: Stats) = with(stats) { ticksThisTurn.clear().also { currentEffects.clear() } }
 
     fun clearOutrightEffects(stats: Stats) = with(stats) {
-        currentEffects.removeIf { it is StatEffect.OutrightEffect }
+        currentEffects.removeIf { it is Effect.StatusEffect }
     }
 
     fun clearTickingEffects(stats: Stats) = with(stats) {
-        currentEffects.removeIf { it is StatEffect.TickingEffect }.also { ticksThisTurn.clear() }
+        currentEffects.removeIf { it is Effect.TickingEffect }.also { ticksThisTurn.clear() }
     }
 }
