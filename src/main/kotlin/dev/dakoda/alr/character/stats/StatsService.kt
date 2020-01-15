@@ -1,41 +1,52 @@
 package dev.dakoda.alr.character.stats
 
-import dev.dakoda.alr.combat.Damages
+import dev.dakoda.alr.character.stats.effects.Effect
+import dev.dakoda.alr.character.stats.effects.EffectTicking
+import dev.dakoda.alr.combat.Damage
+import dev.dakoda.alr.combat.Damage.Type.CONDITIONAL
+import dev.dakoda.alr.combat.Damage.Type.ETHEREAL
+import dev.dakoda.alr.combat.Damage.Type.PHYSICAL
 
 object StatsService {
 
-    fun applyEffect(stats: Stats, effect: Effect) = stats.currentEffects.add(effect)
+    fun applyEffect(stats: Stats, effect: Effect) = stats.activeEffects.add(effect)
 
-    fun removeEffect(stats: Stats, effect: Effect) = stats.currentEffects.remove(effect)
+    fun removeEffect(stats: Stats, effect: Effect) = stats.activeEffects.remove(effect)
 
-    fun calculateTickingEffects(stats: Stats) {
-        with(stats) {
-            val markedForRemoval = mutableListOf<Effect.TickingEffect>()
-            currentEffects.filterIsInstance<Effect.TickingEffect>().forEach {
-                if (it.turnsLeft > 0) {
-                    ticksThisTurn.add(it.apply {
-                        turnsLeft -= 1
-                    })
-                } else {
-                    markedForRemoval.add(it)
-                }
+    fun calculateTickingEffects(stats: Stats) = with(stats) {
+        val markedForRemoval = mutableListOf<EffectTicking>()
+        activeEffects.filterIsInstance<EffectTicking>().forEach {
+            if (it.turnsLeft > 0) {
+                ticksThisTurn.add(it.apply {
+                    turnsLeft -= 1
+                })
+            } else {
+                markedForRemoval.add(it)
             }
-            markedForRemoval.forEach { marked -> currentEffects.remove(marked) }
+        }
+        markedForRemoval.forEach { marked -> activeEffects.remove(marked) }
+    }
+
+    fun applyHealthChanges(stats: Stats, damage: Damage) {
+        with(stats) {
+            receiveHealthChanges(damage.physical, PHYSICAL)
+            receiveHealthChanges(damage.conditional, CONDITIONAL)
+            receiveHealthChanges(damage.ethereal, ETHEREAL)
+            roundHealthIntoBoundaries()
         }
     }
 
-    fun applyHealthChanges(stats: Stats, damages: Damages) {
+    fun applyManaChanges(stats: Stats, damage: Damage) {
         with(stats) {
-            health -= damages.physical
-            health -= damages.conditional
-            health -= damages.ethereal
-            if (health < 0) health = 0.0
-            if (health > healthMax) health = healthMax
+            receiveManaChanges(damage.physical, PHYSICAL)
+            receiveManaChanges(damage.conditional, CONDITIONAL)
+            receiveManaChanges(damage.ethereal, ETHEREAL)
+            roundManaIntoBoundaries()
         }
     }
 
     fun calculateOutrightEffects(stats: Stats) = with(stats) {
-        currentEffects.filterIsInstance<Effect.StatusEffect>().forEach {
+        statsDiffs.currentEffects.filterIsInstance<Effect.EffectStatus>().forEach {
             healthMaxDiff += it.healthMax
             manaMaxDiff += it.manaMax
             courageDiff += it.courage
@@ -46,13 +57,17 @@ object StatsService {
         }
     }
 
-    fun clearEffects(stats: Stats) = with(stats) { ticksThisTurn.clear().also { currentEffects.clear() } }
+    fun clearEffects(stats: Stats) = with(stats) {
+        ticksThisTurn.clear().also { activeEffects.clear() }
+    }
 
     fun clearOutrightEffects(stats: Stats) = with(stats) {
-        currentEffects.removeIf { it is Effect.StatusEffect }
+        activeEffects.removeIf { it is Effect.EffectStatus }
     }
 
     fun clearTickingEffects(stats: Stats) = with(stats) {
-        currentEffects.removeIf { it is Effect.TickingEffect }.also { ticksThisTurn.clear() }
+        activeEffects.removeIf {
+            it is EffectTicking
+        }.also { ticksThisTurn.clear() }
     }
 }

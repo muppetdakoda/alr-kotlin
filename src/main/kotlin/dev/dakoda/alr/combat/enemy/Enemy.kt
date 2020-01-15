@@ -1,6 +1,6 @@
 package dev.dakoda.alr.combat.enemy
 
-import dev.dakoda.alr.character.inventory.item.Equipment
+import dev.dakoda.alr.character.player.inventory.Equipment
 import dev.dakoda.alr.character.stats.Stats
 import dev.dakoda.alr.combat.Combatant
 

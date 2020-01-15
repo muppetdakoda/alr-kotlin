@@ -1,6 +1,6 @@
 package dev.dakoda.alr.combat
 
-import dev.dakoda.alr.character.inventory.item.Equipment
+import dev.dakoda.alr.character.player.inventory.Equipment
 import dev.dakoda.alr.character.stats.Stats
 
 abstract class Combatant(

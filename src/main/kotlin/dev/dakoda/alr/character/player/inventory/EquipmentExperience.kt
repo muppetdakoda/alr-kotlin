@@ -1,4 +1,4 @@
-package dev.dakoda.alr.character.inventory.item
+package dev.dakoda.alr.character.player.inventory
 
 class EquipmentExperience(
     var level: Int,

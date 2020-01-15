@@ -23,14 +23,14 @@ object CombatService {
 
             // Deal increased physical damage
             fun critical(attacker: Combatant, receiver: Combatant) {
-                val critChance = attacker.stats.critChanceBase
+                val critChance = attacker.stats.criticalChance
                 with(attacker.equipment) {
                     val baseDamage = attacker.phys
 
                     val additiveCrit =
-                        (if (isHoldingDoubleHanded) mainHand.critDamage else (mainHand.critDamage + offHand.critDamage)) + attacker.stats.critDamageBase
+                        (if (isHoldingDoubleHanded) mainHand.critDamage else (mainHand.critDamage + offHand.critDamage)) + attacker.stats.criticalDamage
                     val crit = baseDamage * (1.5 + additiveCrit)
-                    StatsService.applyHealthChanges(receiver.stats, Damages.physical(crit))
+                    StatsService.applyHealthChanges(receiver.stats, Damage.physical(crit))
                 }
             }
 
@@ -46,11 +46,11 @@ object CombatService {
                 return@with if (isHoldingDoubleHanded) mainHand.ether else (mainHand.ether + offHand.ether)
             }
 
-            private val Weapon.phys get() = this.damages.physical
+            private val Weapon.phys get() = this.damage.physical
 
-            private val Weapon.cond get() = this.damages.conditional
+            private val Weapon.cond get() = this.damage.conditional
 
-            private val Weapon.ether get() = this.damages.ethereal
+            private val Weapon.ether get() = this.damage.ethereal
 
             private val Weapon.critDamage get() = this.statBonus.critDamage
         }
